@@ -6,13 +6,20 @@ import org.junit.jupiter.api.Test;
 public class ShapesTest {
     @Test
     void testShapes() {
-        Rectangle rectangle = new Square();
-        validateAreaCalculation(rectangle);
+        Rectangle rectangle = new Rectangle(10, 20);
+        validateShapeAreaCalculation(rectangle, 200);
+        rectangle.setHeight(25);
+        validateShapeAreaCalculation(rectangle, 250);
+        rectangle.setWidth(15);
+        validateShapeAreaCalculation(rectangle, 15*25);
+        Square square = new Square(10);
+//        We have got no way to get unexpected value of square area, since it doesn't have setWidth() and setHeight()
+        validateShapeAreaCalculation(square, 100);
+        square.setSide(20);
+        validateShapeAreaCalculation(square, 400);
     }
 
-    private void validateAreaCalculation(Rectangle rectangle) {
-        rectangle.setWidth(10);
-        rectangle.setHeight(20);
-        Assertions.assertEquals(200, rectangle.area());
+    private void validateShapeAreaCalculation(Shape shape, int expectedValue) {
+        Assertions.assertEquals(expectedValue, shape.area());
     }
 }
