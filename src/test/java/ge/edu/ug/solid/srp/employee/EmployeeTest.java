@@ -4,16 +4,19 @@ import org.junit.jupiter.api.Test;
 
 class EmployeeTest {
     @Test
-    void testBadExample() {
-        Employee erich = new Employee("Erich", "Gamma", 10.0);
-        showEmployeeDetails(erich);
+    void displayEmployeeDetails() {
+        Employee nikola = new Employee("Nikola", "Tesla", 10.0);
+        EmployeeIdGenerator idGenerator = new EmployeeIdGenerator();
+        nikola.employeeId = idGenerator.generateEmployeeId();
+        showEmpDetail(nikola);
     }
 
-    private void showEmployeeDetails(Employee employee) {
-        employee.displayEmployeeDetails();
-        employee.employeeId = employee.generateEmployeeId();
-
-        System.out.printf("Employee id: %s\n", employee.employeeId);
-        System.out.printf("This employee is a %s employee\n", employee.checkSeniority());
+    private static void showEmpDetail(Employee emp) {
+        // Display employee detail
+        emp.displayEmployeeDetails();
+        System.out.println("The employee id: " + emp.employeeId);
+        // Check the seniority level
+        SeniorityChecker seniorityChecker = new SeniorityChecker();
+        System.out.printf("This employee is a %s employee.", seniorityChecker.checkSeniority(emp.experienceInYears));
     }
 }
