@@ -4,13 +4,12 @@ import org.junit.jupiter.api.Test;
 
 class PrinterTest {
     @Test
-    public void testBadExample() {
-        System.out.println("***A demo without ISP.***");
-        Printer printer = new AdvancedPrinter();
-        printer.print();
-        printer.sendFax();
-        printer = new BasicPrinter();
-        printer.print();
-        printer.sendFax(); // Will throw error
+    public void testIspGoodExample() {
+        System.out.println("***A demo that follows ISP.***");
+        Printer basicPrinter = new BasicPrinter();
+        basicPrinter.print();
+        AdvancedPrinter advancedPrinter = new AdvancedPrinter();
+        advancedPrinter.print();
+        advancedPrinter.sendFax();
     }
 }
